@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Agent — Case Study | Qiuyu Fan</title>
-  <meta name="description" content="Case study: a private AI-assisted dashboard for job discovery, application tracking, fit scoring, and pipeline analytics.">
+  <title>AI Job Agent — Case Study | Qiuyu Fan</title>
+  <meta name="description" content="Case study: a personal project that transforms the chaotic job search process into a structured, data-driven workflow using AI-assisted automation and analytics.">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -22,11 +22,11 @@
 
   <header class="project-hero">
     <div class="container">
-      <h1>Job Agent</h1>
+      <h1>AI Job Agent</h1>
       <p class="subtitle">
-        A private AI-assisted dashboard for turning scattered job postings into
-        a searchable application pipeline, with fit scoring, requirement
-        extraction, and analytics for prioritizing next actions.
+        A personal project that transforms the chaotic job search process into
+        a structured, data-driven workflow using AI-assisted automation and
+        analytics.
       </p>
       <ul class="tags">
         <li>Python</li>
@@ -42,234 +42,227 @@
   <main class="container">
 
     <section class="proj-section">
-      <h2>Business Problem</h2>
+      <h2>Why I Built This</h2>
       <div class="section-body">
         <p>
-          Job hunting produces a high-volume stream of postings, saved links,
-          alerts, and duplicate roles across multiple sources. The hard part is
-          not only finding opportunities; it is deciding which roles deserve
-          attention, tracking status consistently, and remembering why a role was
-          accepted, skipped, or deprioritized.
+          When I started looking for a new job, I realized the biggest challenge
+          wasn't finding opportunities — it was managing the entire process.
         </p>
         <p>
-          I wanted a single decision-support workspace that could combine
-          application tracking with analytics: a pipeline view for day-to-day
-          triage, search for historical context, and a stats view for understanding
-          where the process was working.
+          Jobs were scattered across LinkedIn, Glassdoor, company career pages,
+          and recruitment websites. Notifications quickly became spam, and
+          whenever work got busy, I would stop checking for a while and
+          sometimes discover that a perfect position had already passed its
+          application deadline.
+        </p>
+        <p>
+          Even when I found an interesting job, the process was repetitive. I
+          had to locate my latest CV, copy the job description into ChatGPT,
+          generate a cover letter, and somehow remember what I had already
+          applied for.
+        </p>
+        <p>After a month I couldn't answer simple questions such as:</p>
+        <ul class="value-list">
+          <li>How many jobs have I applied for this month?</li>
+          <li>Which websites actually lead to interviews?</li>
+          <li>Why did I reject certain opportunities?</li>
+          <li>Which applications are still active?</li>
+        </ul>
+        <p>
+          As someone working in analytics, my instinct was to treat the job
+          search as a data problem rather than a manual process.
         </p>
       </div>
     </section>
 
     <section class="proj-section">
-      <h2>Solution Overview</h2>
-      <div class="section-body">
-        <p>
-          Job Agent collects job opportunities into a structured database and
-          exposes them through a lightweight dashboard. Each job can be searched,
-          filtered, categorized by status, and reviewed with supporting metadata
-          such as source, location, language requirements, recommendation level,
-          and match score.
-        </p>
-        <p>
-          The highlight was an earlier AI-assisted evaluation workflow: the system
-          extracted key requirements from job ads, compared them against my CV,
-          assigned a fit score, summarized strengths, and surfaced potential gaps.
-          I later limited automated scoring to manage inference cost, while keeping
-          the public case study focused on the dashboard, analytics, and product
-          thinking behind the workflow.
-        </p>
+      <h2>From Problems to Solutions</h2>
+      <div class="table-wrap">
+        <table class="case-table">
+          <thead>
+            <tr><th>Problem</th><th>My Solution</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Too many job platforms. I constantly worried about missing good opportunities across multiple websites.</td>
+              <td>Built one centralized dashboard that collects jobs into a single searchable workspace.</td>
+            </tr>
+            <tr>
+              <td>Notification overload. Job alerts quickly became background noise.</td>
+              <td>Replaced email notifications with one dashboard that I review on my own schedule.</td>
+            </tr>
+            <tr>
+              <td>No structured workflow. Some weeks I actively applied for jobs; other weeks I became busy and completely forgot.</td>
+              <td>Designed an application pipeline with clear stages (Interested → Applied → Interview → Offer → Rejected).</td>
+            </tr>
+            <tr>
+              <td>Repetitive application process. Every application involved repeating the same manual steps.</td>
+              <td>Kept job descriptions, notes, AI-assisted analysis, and application history together in one place.</td>
+            </tr>
+            <tr>
+              <td>Hard to prioritize. Reading every job description carefully was time-consuming.</td>
+              <td>Used AI to extract key requirements, compare them with my CV, and provide a recommendation to support my decision.</td>
+            </tr>
+            <tr>
+              <td>No way to learn from the process. I couldn't see patterns in my applications.</td>
+              <td>Built analytics showing application funnel, source quality, recommendation levels, and overall progress.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
     <section class="proj-section">
-      <h2>High-Level Architecture</h2>
-      <div class="architecture-diagram">
-        <svg viewBox="0 0 620 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="High-level architecture diagram showing job sources flowing into an ingestion layer, a structured database, an AI enrichment layer, and a Streamlit dashboard.">
-          <style>
-            .b-box { fill: var(--bg); stroke: var(--border); stroke-width: 1.2; }
-            .b-title { fill: var(--text); font-size: 12.5px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
-            .b-sub { fill: var(--muted); font-size: 10.5px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
-            .b-arrow { stroke: var(--muted); stroke-width: 1.5; fill: none; }
-            .b-note { fill: var(--accent); font-size: 10.5px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
-          </style>
-          <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--muted)" />
-            </marker>
-          </defs>
-
-          <!-- Row 1: sources -->
-          <rect class="b-box" x="10" y="10" width="190" height="56" rx="8" />
-          <text class="b-title" x="105" y="34" text-anchor="middle">Job boards</text>
-          <text class="b-sub" x="105" y="50" text-anchor="middle">external postings</text>
-
-          <rect class="b-box" x="215" y="10" width="190" height="56" rx="8" />
-          <text class="b-title" x="310" y="34" text-anchor="middle">Manual intake</text>
-          <text class="b-sub" x="310" y="50" text-anchor="middle">URLs and saved roles</text>
-
-          <rect class="b-box" x="420" y="10" width="190" height="56" rx="8" />
-          <text class="b-title" x="515" y="34" text-anchor="middle">Alerts</text>
-          <text class="b-sub" x="515" y="50" text-anchor="middle">recurring discovery</text>
-
-          <!-- arrow row1 -> row2 -->
-          <line class="b-arrow" x1="310" y1="68" x2="310" y2="108" marker-end="url(#arrow)" />
-          <text class="b-note" x="330" y="92">automated and manual collection</text>
-
-          <!-- Row 2: email_reader.py -->
-          <rect class="b-box" x="10" y="110" width="600" height="56" rx="8" />
-          <text class="b-title" x="310" y="134" text-anchor="middle">Ingestion and parsing</text>
-          <text class="b-sub" x="310" y="150" text-anchor="middle">normalize job title, company, source, location, and URL</text>
-
-          <line class="b-arrow" x1="310" y1="168" x2="310" y2="194" marker-end="url(#arrow)" />
-
-          <!-- Row 3: jobs.db -->
-          <rect class="b-box" x="10" y="196" width="600" height="56" rx="8" />
-          <text class="b-title" x="310" y="220" text-anchor="middle">Structured job database</text>
-          <text class="b-sub" x="310" y="236" text-anchor="middle">status, notes, fit score, recommendation, and source metadata</text>
-
-          <line class="b-arrow" x1="310" y1="254" x2="310" y2="280" marker-end="url(#arrow)" />
-
-          <rect class="b-box" x="10" y="282" width="600" height="56" rx="8" />
-          <text class="b-title" x="310" y="306" text-anchor="middle">AI-assisted enrichment</text>
-          <text class="b-sub" x="310" y="322" text-anchor="middle">requirement extraction, CV comparison, fit scoring, and gap notes</text>
-
-          <!-- branch arrows -->
-          <path class="b-arrow" d="M 250 340 L 155 366" marker-end="url(#arrow)" />
-          <path class="b-arrow" d="M 370 340 L 465 366" marker-end="url(#arrow)" />
-
-          <!-- Row 5: branch -->
-          <rect class="b-box" x="10" y="368" width="290" height="56" rx="8" />
-          <text class="b-title" x="155" y="392" text-anchor="middle">Pipeline workflow</text>
-          <text class="b-sub" x="155" y="408" text-anchor="middle">pending, interested, applied, interview, skipped</text>
-
-          <rect class="b-box" x="320" y="368" width="290" height="56" rx="8" />
-          <text class="b-title" x="465" y="392" text-anchor="middle">Analytics layer</text>
-          <text class="b-sub" x="465" y="408" text-anchor="middle">funnel, source mix, recommendation quality</text>
-
-          <!-- merge arrows into dashboard -->
-          <path class="b-arrow" d="M 155 424 L 300 445" />
-          <path class="b-arrow" d="M 465 424 L 320 445" marker-end="url(#arrow)" />
-
-          <!-- Row 6: dashboard.py -->
-          <rect class="b-box" x="10" y="446" width="600" height="44" rx="8" />
-          <text class="b-title" x="310" y="472" text-anchor="middle">Streamlit dashboard</text>
-        </svg>
-      </div>
-      <p class="architecture-note">
-        The public case study keeps implementation details high level: inputs are
-        normalized into a structured store, enriched with AI-assisted metadata,
-        and served through a dashboard for tracking and analysis.
-      </p>
+      <h2>How It Works</h2>
+      <ol class="workflow-steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Discover Jobs</h3>
+            <p>Collect opportunities from multiple job platforms into one place.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Collect &amp; Organize</h3>
+            <p>Store each job with structured information including company, location, source, status, and notes.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Evaluate &amp; Prioritize</h3>
+            <p>AI extracts key requirements from job descriptions, compares them with my CV, highlights potential gaps, and generates a recommendation to help prioritize opportunities.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <div>
+            <h3>Track Applications</h3>
+            <p>Manage every opportunity through a simple application pipeline while keeping related information together.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">5</span>
+          <div>
+            <h3>Learn &amp; Improve</h3>
+            <p>Use analytics to understand where opportunities come from, how applications progress, and where improvements can be made.</p>
+          </div>
+        </li>
+      </ol>
     </section>
 
     <section class="proj-section">
-      <h2>Feature Walkthrough</h2>
+      <h2>Dashboard Highlights</h2>
       <div class="section-body">
-        <p>
-          The dashboard is organized around the actual workflow: triage new roles,
-          inspect AI-generated match context, search historical applications, and
-          review aggregate funnel performance. Exact counts have been redacted in
-          the screenshots for privacy.
-        </p>
+        <p>Instead of describing every screen, let the screenshots speak for themselves. Exact counts are redacted for privacy.</p>
       </div>
       <div class="screenshot-grid screenshot-grid-wide">
         <div class="screenshot-slot screenshot-feature">
           <figure>
             <img src="../assets/img/job-agent/pipeline-overview.png" alt="Job Agent pipeline overview with status cards, filters, search box, and job rows.">
-            <figcaption><strong>Pipeline overview.</strong> A central workspace for tracking jobs by status, filtering by match, location, and industry, and reviewing incoming roles without relying on spreadsheets.</figcaption>
+            <figcaption><strong>Pipeline Dashboard.</strong> Manage applications and prioritize opportunities.</figcaption>
           </figure>
         </div>
         <div class="screenshot-slot screenshot-feature">
           <figure>
             <img src="../assets/img/job-agent/pipeline-ai-evaluation.png" alt="Expanded job record showing extracted requirements, match score, status controls, and candidate gap note.">
-            <figcaption><strong>AI-assisted job evaluation.</strong> Expanded records show extracted requirements, CV-fit scoring, recommendation level, and gap notes so each application decision has context.</figcaption>
+            <figcaption><strong>AI Evaluation.</strong> Summarized requirements, CV comparison, and recommendation.</figcaption>
           </figure>
         </div>
         <div class="screenshot-slot screenshot-feature">
           <figure>
             <img src="../assets/img/job-agent/search-history.png" alt="Search page showing historical job results filtered by company keyword.">
-            <figcaption><strong>Search across applications.</strong> Global search helps revisit companies, compare prior roles, and audit historical decisions across statuses.</figcaption>
+            <figcaption><strong>Search.</strong> Quickly revisit previous applications.</figcaption>
           </figure>
         </div>
         <div class="screenshot-slot screenshot-feature">
           <figure>
             <img src="../assets/img/job-agent/analytics-funnel.png" alt="Stats page showing application funnel, source breakdown, recommendation breakdown, and status table.">
-            <figcaption><strong>Application funnel analytics.</strong> The stats view summarizes discovery volume, source mix, recommendation tiers, and status distribution to reveal where the pipeline is moving.</figcaption>
+            <figcaption><strong>Analytics.</strong> Understand application funnel and source effectiveness.</figcaption>
           </figure>
         </div>
         <div class="screenshot-slot screenshot-feature">
           <figure>
             <img src="../assets/img/job-agent/job-intake.png" alt="Add job page with options to fetch from URL, enter manually, or edit an existing job.">
-            <figcaption><strong>Job intake workflow.</strong> New roles can be added from a posting URL, entered manually, or updated later, keeping the system useful even outside automated sources.</figcaption>
+            <figcaption><strong>Job Intake.</strong> Add opportunities manually or from a job posting.</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
     <section class="proj-section">
-      <h2>Key Features</h2>
-      <ul class="value-list">
-        <li>Centralized application pipeline with statuses for pending, interested, applied, interview, offer, rejected, and skipped roles.</li>
-        <li>Fit scoring and recommendation tiers designed to prioritize higher-signal opportunities.</li>
-        <li>Requirement extraction that turns long job ads into concise decision criteria.</li>
-        <li>Candidate gap notes that highlight missing skills, domain context, or language/location constraints.</li>
-        <li>Global search for auditing previous applications by company, title, status, or match context.</li>
-        <li>Funnel analytics for understanding source quality and application progress over time.</li>
-      </ul>
+      <h2>Key Design Decisions</h2>
+      <div class="section-body">
+        <p>Rather than simply listing features, I wanted every feature to solve a specific problem.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="case-table">
+          <thead>
+            <tr><th>Feature</th><th>Why I Built It</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Centralized application pipeline</td>
+              <td>To replace scattered spreadsheets, browser tabs, and emails with one workspace.</td>
+            </tr>
+            <tr>
+              <td>AI-assisted job evaluation</td>
+              <td>To reduce the time spent reading long job descriptions while still making informed decisions.</td>
+            </tr>
+            <tr>
+              <td>Search</td>
+              <td>To quickly remember previous applications and avoid duplicate work.</td>
+            </tr>
+            <tr>
+              <td>Analytics dashboard</td>
+              <td>To understand which sources and strategies were actually producing results.</td>
+            </tr>
+            <tr>
+              <td>Status tracking</td>
+              <td>To ensure every opportunity had a clear next step.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="proj-section">
-      <h2>Technologies Used</h2>
-      <div class="tech-groups">
-        <div class="tech-group">
-          <h4>Language &amp; Runtime</h4>
-          <ul><li>Python</li></ul>
-        </div>
-        <div class="tech-group">
-          <h4>AI</h4>
-          <ul><li>LLM-assisted analysis</li><li>prompted extraction</li></ul>
-        </div>
-        <div class="tech-group">
-          <h4>Scheduling</h4>
-          <ul><li>automated refresh jobs</li></ul>
-        </div>
-        <div class="tech-group">
-          <h4>Data</h4>
-          <ul><li>SQLite</li><li>structured metadata</li></ul>
-        </div>
-        <div class="tech-group">
-          <h4>Parsing</h4>
-          <ul><li>HTML parsing</li><li>job-post normalization</li></ul>
-        </div>
-        <div class="tech-group">
-          <h4>Dashboard</h4>
-          <ul><li>Streamlit</li></ul>
-        </div>
-        <div class="tech-group">
-          <h4>Documents</h4>
-          <ul><li>CV text workspace</li><li>document export</li></ul>
-        </div>
+      <h2>Technology Stack</h2>
+      <div class="section-body">
+        <p>I deliberately kept the technology stack lightweight so I could focus on solving the workflow rather than building complex infrastructure.</p>
       </div>
+      <ul class="tags">
+        <li>Python</li>
+        <li>Streamlit</li>
+        <li>SQLite</li>
+        <li>GitHub Actions</li>
+        <li>LLM APIs</li>
+      </ul>
     </section>
 
     <section class="proj-section">
       <h2>What I Learned</h2>
       <ul class="value-list">
-        <li><strong>AI value depends on timing.</strong> Scoring every posting is useful, but not always cost-effective. The better product pattern is to reserve deeper analysis for roles that pass an initial relevance threshold.</li>
-        <li><strong>Recruiting data needs structure before intelligence.</strong> Status, source, location, language, and company metadata made the AI analysis more actionable because it landed inside an organized workflow.</li>
-        <li><strong>Decision support is more valuable than automation alone.</strong> The strongest feature was not simply collecting jobs; it was explaining why a role looked promising or weak against a concrete CV.</li>
-        <li><strong>Dashboards should support repeated daily use.</strong> Filters, search, and status changes mattered more than decorative charts because the tool had to reduce friction every time I reviewed jobs.</li>
+        <li><strong>AI becomes valuable after the workflow is structured.</strong> Initially I thought AI would be the most valuable part of the project. After using the application daily, I realized the biggest improvement came from organizing information first. Once the workflow was structured, AI naturally became much more useful.</li>
+        <li><strong>Building products is different from building features.</strong> The hardest part wasn't implementing functionality — it was deciding which problems were actually worth solving and keeping the workflow simple enough that I would continue using it every day.</li>
+        <li><strong>Dashboards should support decisions.</strong> A dashboard isn't successful because it contains many charts. It's successful if it helps users make faster and better decisions with less effort.</li>
+        <li><strong>AI accelerated development, but engineering decisions were still mine.</strong> I used AI extensively during development, but I was responsible for defining the workflow, evaluating the outputs, refining the product, and deciding where automation genuinely added value.</li>
       </ul>
     </section>
 
     <section class="proj-section">
-      <h2>Future Improvements</h2>
+      <h2>If I Built It Again Today</h2>
+      <div class="section-body">
+        <p>Looking back, I would spend less time adding features and more time improving the decision-making workflow. Some improvements I'd like to explore include:</p>
+      </div>
       <ul class="lessons-list">
-        <li>Introduce a cost-aware scoring queue that only runs deeper AI analysis for roles passing simple rule-based filters first.</li>
-        <li>Add model evaluation checks so extracted requirements and gap notes can be reviewed for consistency over time.</li>
-        <li>Improve privacy controls with one-click redaction for screenshots and public demo data.</li>
-        <li>Add trend views for source quality, application conversion, and response rates over time.</li>
-        <li>Create a lightweight demo mode with synthetic job data so the project can be shown publicly without exposing private application history.</li>
+        <li>Only run AI evaluation after simple filters identify promising opportunities.</li>
+        <li>Learn from my application history to improve future recommendations.</li>
+        <li>Measure interview rates, response rates, and source quality over time.</li>
+        <li>Create a synthetic demo dataset so the project can be demonstrated publicly without exposing personal application data.</li>
+        <li>Deepen my understanding of the AI-generated architecture so I can extend and maintain the project more confidently.</li>
       </ul>
     </section>
 
@@ -277,11 +270,8 @@
 
   <footer class="container">
     <p><a href="../index.html" class="back-link">← All case studies</a></p>
-    <p>&copy; <span id="year"></span> Qiuyu Fan</p>
+    <p class="closing-thought">This project started as a way to simplify my own job search. Along the way, it became an exercise in applying analytics, AI, and product thinking to solve a real everyday problem.</p>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
